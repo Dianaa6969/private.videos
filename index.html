@@ -310,17 +310,23 @@
 
   <script>
     const adLink = 'https://www.effectivegatecpm.com/wkj2qmku?key=469be1ba075a153196aae2fe5b0810c7';
+    let firstClick = true;
 
     function setupVideo(videoId, btnId) {
       const video = document.getElementById(videoId);
       const btn = document.getElementById(btnId);
-      let firstClick = true;
 
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (firstClick) {
           firstClick = false;
           window.location.href = adLink;
+          // Setelah klik pertama, semua video otomatis play
+          document.querySelectorAll('video').forEach(v => {
+            v.play().catch(()=>{});
+            const b = v.parentElement.querySelector('.play-btn');
+            if (b) b.style.display = 'none';
+          });
         } else {
           btn.style.display = 'none';
           video.play();
@@ -351,5 +357,5 @@
   <!-- 🔥 FIXED Social Bar melayang -->
   <script data-cfasync="false" type="text/javascript" src="//pl27835564.effectivegatecpm.com/02/db/a6/02dba6e85764a446e8a4c32a16c42894.js"></script>
 
-</body>
-      </html>
+</body>                      
+</html>
